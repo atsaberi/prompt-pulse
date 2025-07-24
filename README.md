@@ -36,3 +36,22 @@ Prompt Pulse is a lightweight, production-grade platform to evaluate, score, and
 - [ ] Scheduled CI (daily evals)
 - [ ] Dashboard frontend (basic)
 
+## Architecture 
+
+```mermaid
+graph TD
+  User[User Interface - React] --> API[Backend API - Node/Express]
+  API --> Auth[Authentication Service]
+  API --> DB[(Database - PostgreSQL)]
+  API --> ML[ML Service - Python/FastAPI]
+  ML --> Model[Trained Model - PyTorch]
+  Model --> Storage[(Model Files - S3)]
+  API --> Logs[(Logging/Monitoring)]```mermaid
+graph TD
+  User[User Interface - React] --> API[Backend API - Node/Express]
+  API --> Auth[Authentication Service]
+  API --> DB[(Database - PostgreSQL)]
+  API --> ML[ML Service - Python/FastAPI]
+  ML --> Model[Trained Model - PyTorch]
+  Model --> Storage[(Model Files - S3)]
+  API --> Logs[(Logging/Monitoring)]
