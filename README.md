@@ -28,13 +28,6 @@ Prompt Pulse is a lightweight, production-grade platform to evaluate, score, and
 | Frontend   | React (optional)                      |
 
 
-## 📌 Roadmap
-
-- [ ] FastAPI LLM run + scoring service
-- [ ] Databricks Delta ingestion pipeline
-- [ ] Terraform AWS infrastructure
-- [ ] Scheduled CI (daily evals)
-- [ ] Dashboard frontend (basic)
 
 ## Architecture 
 
@@ -71,3 +64,11 @@ flowchart TD
   Argo --> FastAPI
 
 ```
+
+## 📌 Roadmap
+
+- [ ] FastAPI LLM run + scoring service
+- [ ] Databricks Delta ingestion pipeline
+- [ ] Terraform AWS infrastructure
+- [ ] Scheduled CI (daily evals)
+- [ ] Dashboard frontend (basic)
