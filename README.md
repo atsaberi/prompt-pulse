@@ -38,20 +38,36 @@ Prompt Pulse is a lightweight, production-grade platform to evaluate, score, and
 
 ## Architecture 
 
+
 ```mermaid
-graph TD
-  User[User Interface - React] --> API[Backend API - Node/Express]
-  API --> Auth[Authentication Service]
-  API --> DB[(Database - PostgreSQL)]
-  API --> ML[ML Service - Python/FastAPI]
-  ML --> Model[Trained Model - PyTorch]
-  Model --> Storage[(Model Files - S3)]
-  API --> Logs[(Logging/Monitoring)]```mermaid
-graph TD
-  User[User Interface - React] --> API[Backend API - Node/Express]
-  API --> Auth[Authentication Service]
-  API --> DB[(Database - PostgreSQL)]
-  API --> ML[ML Service - Python/FastAPI]
-  ML --> Model[Trained Model - PyTorch]
-  Model --> Storage[(Model Files - S3)]
-  API --> Logs[(Logging/Monitoring)]
+flowchart TD
+  %% Components
+  ReactApp["React App"]
+  FastAPI["FastAPI Server"]
+  LangChain["LangChain Agent (OpenAI / Anthropic)"]
+  S3["AWS S3 Bucket"]
+  Cron["GitHub Actions"]
+  DBX["Databricks Job"]
+  Delta["Delta Lake Table"]
+  Dashboard["Dashboard UI"]
+  Terraform["Terraform"]
+  Argo["ArgoCD"]
+
+  %% Data flow
+  ReactApp -->|User prompt| FastAPI
+  FastAPI -->|Send prompt| LangChain
+  LangChain -->|Return result| FastAPI
+  FastAPI -->|Save output| S3
+
+  Cron -->|Trigger batch job| S3
+  S3 -->|Data| DBX
+  DBX -->|Write processed data| Delta
+  Delta -->|Visualize| Dashboard
+
+  %% Infra
+  Terraform --> FastAPI
+  Terraform --> DBX
+  Terraform --> S3
+  Argo --> FastAPI
+
+```
